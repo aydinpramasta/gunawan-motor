@@ -4,16 +4,8 @@
 <title>Dashboard | Gunawan Motor</title>
 @endsection
 
-@section('css')
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-@endsection
-
-@section('js')
-
-@endsection
-
 @section('header')
-Dashboard
+<h1 class="m-0">Dashboard</h1>
 @endsection
 
 @section('content')
