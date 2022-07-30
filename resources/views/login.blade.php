@@ -32,16 +32,23 @@
           {{ $message }}
         </div>
         @enderror
+
+        @error('username')
+          <span class="text-danger">{{ $message }}</span>
+        @enderror
         <div class="input-group mb-3">
-          <input name="username" type="text" class="form-control" placeholder="Username" value="{{ old('username') }}">
+          <input name="username" type="text" class="form-control @error('username') {{ 'is-invalid' }} @enderror" placeholder="Username" value="{{ old('username') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+        @error('password')
+          <span class="text-danger">{{ $message }}</span>
+        @enderror
         <div class="input-group mb-3">
-          <input name="password" type="password" class="form-control" placeholder="Password">
+          <input name="password" type="password" class="form-control @error('password') {{ 'is-invalid' }} @enderror" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
