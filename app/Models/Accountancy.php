@@ -15,5 +15,6 @@ class Accountancy extends Model
     protected $fillable = [
         'type',
         'value',
+        'description',
     ];
 }

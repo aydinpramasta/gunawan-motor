@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountancyController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('logout');
 
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+
+    Route::resource('/accountancy', AccountancyController::class);
 });
