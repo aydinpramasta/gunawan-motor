@@ -57,9 +57,9 @@
       </li>
 
       <li class="nav-item">
-        <form action="{{ route('logout') }}" method="post">
+        <form id="logout" action="{{ route('logout') }}" method="post">
           @csrf
-          <button class="btn nav-link" type="submit">
+          <button type="button" onclick="handleLogout()" class="btn nav-link">
             <i class="fas fa-sign-out-alt"></i>
           </button>
         </form>
@@ -102,7 +102,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('dashboard') }}" class="nav-link">
+            <a href="{{ route('dashboard') }}" class="nav-link {{ (request()->path() === '/') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -165,5 +165,16 @@
 <script src="{{ asset('assets/js/adminlte/adminlte.min.js') }}"></script>
 
 @yield('js')
+
+<script>
+  const handleLogout = () => {
+    const confirm = window.confirm('Apakah anda yakin untuk keluar?');
+    const logoutForm = document.getElementById('logout');
+
+    if (confirm) {
+      logoutForm.submit();
+    }
+  };
+</script>
 </body>
 </html>
