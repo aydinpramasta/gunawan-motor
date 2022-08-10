@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class AccountancyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $accountancies = Accountancy::paginate(15);
+        $accountancies = Accountancy::latest()->paginate(25);
 
         return view('accountancy.index', compact('accountancies'));
     }

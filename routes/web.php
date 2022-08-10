@@ -29,5 +29,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
-    Route::resource('/accountancy', AccountancyController::class);
+    Route::resource('/accountancies', AccountancyController::class);
 });

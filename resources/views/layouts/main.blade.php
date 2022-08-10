@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   @yield('title')
 
+  <link rel="icon" href="{{ asset('gm-logo.png') }}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -50,7 +51,10 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link text-center">
-      <span class="brand-text font-weight-light">Gunawan Motor</span>
+      <span class="brand-text font-weight-light">
+        <img src="{{ asset('gm-logo.png') }}" alt="GM Logo" class="mr-2" style="width: 35px;">
+        Gunawan Motor
+      </span>
     </a>
 
     <!-- Sidebar -->
@@ -87,7 +91,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('accountancy.index') }}" class="nav-link {{ (str_contains(request()->path(), 'accountancy')) ? 'active' : '' }}">
+            <a href="{{ route('accountancies.index') }}" class="nav-link {{ (str_contains(request()->path(), 'accountancies')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Akuntansi
@@ -137,7 +141,7 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2022 RPL SMK Negeri 8 Semarang.</strong>
+    <strong>Copyright &copy; 2022 RPL SMK Negeri 8 Semarang</strong>
   </footer>
 </div>
 <!-- ./wrapper -->
