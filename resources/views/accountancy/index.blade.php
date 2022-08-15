@@ -17,6 +17,13 @@
 @section('content')
 <div class="col-12">
   <div class="card">
+    @if (session()->has('success'))
+      <div class="alert alert-success alert-dismissible m-3">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fas fa-check"></i> Success!</h5>
+        {{ session()->get('success') }}
+      </div>
+    @endif
     <div class="card-tools d-flex flex-column flex-md-row justify-content-between mt-3 mx-4">
       <a href="{{ route('accountancies.create') }}" class="btn btn-success" style="height: fit-content;">
         <i class="fas fa-plus"></i>&nbsp; Tambah

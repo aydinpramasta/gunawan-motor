@@ -37,4 +37,26 @@ class AccountancyController extends Controller
 
         return view('accountancy.index', compact('accountancies'));
     }
+
+    public function create()
+    {
+        return view('accountancy.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'type' => ['required', 'numeric'],
+            'value' => ['required', 'string'],
+            'description' => ['string']
+        ]);
+
+        Accountancy::create([
+            'type' => $request->type,
+            'value' => (int) str_replace('.', '', $request->value),
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('accountancies.index')->with('success', 'Berhasil menambah akuntansi.');
+    }
 }
