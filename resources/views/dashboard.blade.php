@@ -16,28 +16,28 @@
 <div class="col-md-6 col-12">
   <div class="small-box bg-success">
     <div class="inner">
-      <h3><sup style="font-size: 20px">Rp </sup>{{ number_format(num: $income->sum('value'), thousands_separator: '.') }},-</h3>
+      <h3><sup style="font-size: 20px">Rp </sup>{{ number_format(num: $income, thousands_separator: '.') }},-</h3>
 
       <p>Pemasukan</p>
     </div>
     <div class="icon">
       <i class="ion ion-stats-bars"></i>
     </div>
-    <a href="{{ route('accountancies.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    <a href="{{ route('accountancies.index', ['type' => 'income', 'date' => 'weekly']) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
   </div>
 </div>
 
 <div class="col-md-6 col-12">
   <div class="small-box bg-danger">
     <div class="inner">
-      <h3><sup style="font-size: 20px">Rp </sup>{{ number_format(num: $expense->sum('value'), thousands_separator: '.') }},-</h3>
+      <h3><sup style="font-size: 20px">Rp </sup>{{ number_format(num: $expense, thousands_separator: '.') }},-</h3>
 
       <p>Pengeluaran</p>
     </div>
     <div class="icon">
       <i class="ion ion-card"></i>
     </div>
-    <a href="{{ route('accountancies.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    <a href="{{ route('accountancies.index', ['type' => 'expense', 'date' => 'weekly']) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
   </div>
 </div>
 @endsection

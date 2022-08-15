@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/datatables/dataTables.bootstrap4.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/datatables/responsive.bootstrap4.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/datatables/buttons.bootstrap4.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/css/select2/select2.min.css') }}" />
 @endsection
 
 @section('header')
@@ -18,24 +17,40 @@
 @section('content')
 <div class="col-12">
   <div class="card">
-    <div class="card-tools d-flex justify-content-between mt-3 mx-4">
-      <a href="{{ route('accountancies.create') }}" class="btn btn-success" style="height: fit-content">
+    <div class="card-tools d-flex flex-column flex-md-row justify-content-between mt-3 mx-4">
+      <a href="{{ route('accountancies.create') }}" class="btn btn-success" style="height: fit-content;">
         <i class="fas fa-plus"></i>&nbsp; Tambah
       </a>
 
-      <form class="d-flex ml-auto" action="{{ route('accountancies.index') }}" method="get">
-        <select id="filter" name="filter[]" multiple="multiple" data-placeholder="Filter" style="width: 300px;">
-          <option value="p-off">Pagination Off</option>
-          <option value="just-income">Hanya Pendapatan</option>
-          <option value="just-expense">Hanya Pengeluaran</option>
-          <option value="this-week">Minggu ini</option>
-          <option value="this-month">Bulan ini</option>
-        </select>
+      <form class="d-flex flex-column flex-md-row" action="{{ route('accountancies.index') }}" method="get">
+        <div class="form-group mr-3 mt-3 mt-md-0">
+          <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="type-income" name="type" value="income" {{ (request()->input('type') === 'income') ? 'checked' : '' }}>
+            <label for="type-income" class="custom-control-label">Pemasukan</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="type-expense" name="type" value="expense" {{ (request()->input('type') === 'expense') ? 'checked' : '' }}>
+            <label for="type-expense" class="custom-control-label">Pengeluaran</label>
+          </div>
+        </div>
 
-        <input type="text" name="search" class="form-control mx-3" placeholder="Search" style="width: 150px;">
-        
-        <button type="submit" class="btn btn-primary" style="height: fit-content;">
-          <i class="fas fa-search"></i>
+        <div class="form-group mr-3">
+          <div class="custom-control custom-radio">
+            <input class="custom-control-input custom-control-input-danger" type="radio" id="date-weekly" name="date" value="weekly" {{ (request()->input('date') === 'weekly') ? 'checked' : '' }}>
+            <label for="date-weekly" class="custom-control-label">Mingguan</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input class="custom-control-input custom-control-input-danger" type="radio" id="date-monthly" name="date" value="monthly" {{ (request()->input('date') === 'monthly') ? 'checked' : '' }}>
+            <label for="date-monthly" class="custom-control-label">Bulanan</label>
+          </div>
+        </div>
+
+        <a href="{{ route('accountancies.index') }}" class="btn btn-outline-warning mr-0 mr-md-2" style="height: fit-content;">
+          Reset
+        </a>
+
+        <button type="submit" class="btn btn-outline-secondary mt-3 mt-md-0" style="height: fit-content;">
+          Filter
         </button>
       </form>
     </div>
@@ -49,6 +64,7 @@
           <tr>
             <th>#</th>
             <th>Tipe</th>
+            <th>Tanggal</th>
             <th>Nilai</th>
             <th>Deskripsi</th>
             <th>Aksi</th>
@@ -63,9 +79,18 @@
                   {{ ($accountancy->type === 1) ? 'Pemasukan' : 'Pengeluaran' }}
                 </span>
               </td>
+              <td>{{ Carbon\Carbon::parse($accountancy->created_at)->format('d F Y') }}</td>
               <td>Rp {{ number_format(num: $accountancy->value, thousands_separator: '.') }},-</td>
               <td>{{ $accountancy->description }}</td>
-              <td>Action</td>
+              <td>
+                <a href="#" class="m-1 btn btn-sm btn-warning">
+                  <i class="fas fa-edit"></i>
+                </a>
+
+                <a href="#" class="m-1 btn btn-sm btn-danger">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </td>
             </tr>
           @endforeach
         </tbody>
@@ -91,12 +116,9 @@
 <script src="{{ asset('assets/js/datatables/vfs_fonts.js') }}"></script>
 <script src="{{ asset('assets/js/datatables/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/js/datatables/buttons.print.min.js') }}"></script>
-<script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
 
 <script>
   $(function () {
-    $("#filter").select2();
-
     $("#accountancies-table")
       .DataTable({
         searching: false,
