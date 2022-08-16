@@ -90,7 +90,7 @@
               <td>Rp {{ number_format(num: $accountancy->value, thousands_separator: '.') }},-</td>
               <td>{{ $accountancy->description }}</td>
               <td>
-                <a href="#" class="m-1 btn btn-sm btn-warning">
+                <a href="{{ route('accountancies.edit', ['accountancy' => $accountancy->id]) }}" class="m-1 btn btn-sm btn-warning">
                   <i class="fas fa-edit"></i>
                 </a>
 
