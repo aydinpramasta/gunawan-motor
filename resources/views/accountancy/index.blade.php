@@ -93,12 +93,12 @@
                 <a href="{{ route('accountancies.edit', ['accountancy' => $accountancy->id]) }}" class="m-1 btn btn-sm btn-warning">
                   <i class="fas fa-edit"></i>
                 </a>
-                
+
                 <form action="{{ route('accountancies.destroy', ['accountancy' => $accountancy->id]) }}" method="post">
                   @csrf
                   @method('delete')
 
-                  <button id="delete-button" type="button" class="m-1 btn btn-sm btn-danger">
+                  <button onclick="return window.confirm('Yakin ingin menghapus data ini?')" type="submit" class="m-1 btn btn-sm btn-danger">
                     <i class="fas fa-trash"></i>
                   </button>
                 </form>
@@ -131,14 +131,6 @@
 
 <script>
   $(document).ready(function () {
-    $("#delete-button").click(function () {
-      const confirm = window.confirm('Yakin ingin menghapus data ini?');
-
-      if (confirm) {
-        $(this).parent().submit();
-      }
-    });
-
     $("#accountancies-table")
       .DataTable({
         searching: false,

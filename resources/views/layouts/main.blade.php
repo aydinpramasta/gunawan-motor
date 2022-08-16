@@ -38,7 +38,7 @@
       <li class="nav-item">
         <form id="logout" action="{{ route('logout') }}" method="post">
           @csrf
-          <button type="button" onclick="handleLogout()" class="btn nav-link">
+          <button type="submit" onclick="return window.confirm('Apakah anda yakin untuk keluar?')" class="btn nav-link">
             <i class="fas fa-sign-out-alt"></i>
           </button>
         </form>
@@ -154,16 +154,5 @@
 <script src="{{ asset('assets/js/adminlte/adminlte.min.js') }}"></script>
 
 @yield('js')
-
-<script>
-  const handleLogout = () => {
-    const confirm = window.confirm('Apakah anda yakin untuk keluar?');
-    const logoutForm = document.getElementById('logout');
-
-    if (confirm) {
-      logoutForm.submit();
-    }
-  };
-</script>
 </body>
 </html>
