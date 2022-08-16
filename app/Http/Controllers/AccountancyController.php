@@ -81,4 +81,11 @@ class AccountancyController extends Controller
 
         return redirect()->route('accountancies.index')->with('success', 'Berhasil mengedit akuntansi.');
     }
+
+    public function destroy(Accountancy $accountancy)
+    {
+        $accountancy->delete();
+
+        return redirect()->route('accountancies.index')->with('success', 'Berhasil menghapus akuntansi.');
+    }
 }

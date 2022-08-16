@@ -93,10 +93,15 @@
                 <a href="{{ route('accountancies.edit', ['accountancy' => $accountancy->id]) }}" class="m-1 btn btn-sm btn-warning">
                   <i class="fas fa-edit"></i>
                 </a>
+                
+                <form action="{{ route('accountancies.destroy', ['accountancy' => $accountancy->id]) }}" method="post">
+                  @csrf
+                  @method('delete')
 
-                <a href="#" class="m-1 btn btn-sm btn-danger">
-                  <i class="fas fa-trash"></i>
-                </a>
+                  <button id="delete-button" type="button" class="m-1 btn btn-sm btn-danger">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </form>
               </td>
             </tr>
           @endforeach
@@ -125,7 +130,15 @@
 <script src="{{ asset('assets/js/datatables/buttons.print.min.js') }}"></script>
 
 <script>
-  $(function () {
+  $(document).ready(function () {
+    $("#delete-button").click(function () {
+      const confirm = window.confirm('Yakin ingin menghapus data ini?');
+
+      if (confirm) {
+        $(this).parent().submit();
+      }
+    });
+
     $("#accountancies-table")
       .DataTable({
         searching: false,
