@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountancyController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
     Route::resource('/accountancies', AccountancyController::class);
+
+    Route::resource('/stocks', StockController::class);
 });

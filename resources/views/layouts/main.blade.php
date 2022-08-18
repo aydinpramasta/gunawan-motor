@@ -98,6 +98,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{ route('stocks.index') }}" class="nav-link {{ (str_contains(request()->path(), 'stocks')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-box"></i>
+              <p>
+                Stok
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
