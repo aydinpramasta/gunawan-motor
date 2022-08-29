@@ -60,7 +60,7 @@
               </div>
               <img
                 src="{{ $stock->image !== null ? asset('storage/' . $stock->image) : asset('storage/stock-null.png') }}"
-                class="card-img-top" alt="{{ $stock->name }}">
+                class="card-img-top" height="300" style="object-fit: cover;" alt="{{ $stock->name }}">
               <div class="card-body">
                 <h5 class="card-title"><strong>{{ $stock->name }}</strong></h5>
               </div>
