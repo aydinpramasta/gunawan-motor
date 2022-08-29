@@ -45,10 +45,6 @@
           <div class="mt-3 col-12 col-md-4">
             <div class="card">
               <div class="card-header d-flex justify-content-end">
-                <a href="{{ route('stocks.show', ['stock' => $stock->slug]) }}" class="btn btn-sm btn-info mr-2">
-                  <i class="fas fa-eye"></i>
-                </a>
-
                 <a href="{{ route('stocks.edit', ['stock' => $stock->slug]) }}" class="btn btn-sm btn-warning mr-2">
                   <i class="fas fa-edit"></i>
                 </a>

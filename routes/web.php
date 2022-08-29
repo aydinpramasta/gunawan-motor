@@ -32,5 +32,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/accountancies', AccountancyController::class);
 
-    Route::resource('/stocks', StockController::class);
+    Route::resource('/stocks', StockController::class)->except(['show']);
 });
