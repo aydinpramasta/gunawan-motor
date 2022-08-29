@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Accountancy;
+use App\Models\Stock;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -47,8 +48,8 @@ class DatabaseSeeder extends Seeder
                     'updated_at' => now('Asia/Jakarta')->subDays(2)
                 ],
                 [
-                    'type' => Accountancy::INCOME,
-                    'value' => 200000,
+                    'type' => Accountancy::EXPENSE,
+                    'value' => 250000,
                     'description' => 'Ban',
                     'created_at' => now('Asia/Jakarta')->subDays(3),
                     'updated_at' => now('Asia/Jakarta')->subDays(3)
@@ -69,7 +70,47 @@ class DatabaseSeeder extends Seeder
                 ],
             ];
 
+            $stocks = [
+                [
+                    'name' => 'Aki',
+                    'slug' => 'aki',
+                    'image' => null,
+                    'price' => 150000,
+                    'quantity' => 50,
+                    'created_at' => now('Asia/Jakarta')->subDay(),
+                    'updated_at' => now('Asia/Jakarta')->subDay()
+                ],
+                [
+                    'name' => 'Ban Dalam',
+                    'slug' => 'ban-dalam',
+                    'image' => null,
+                    'price' => 25000,
+                    'quantity' => 200,
+                    'created_at' => now('Asia/Jakarta'),
+                    'updated_at' => now('Asia/Jakarta')
+                ],
+                [
+                    'name' => 'Rantai',
+                    'slug' => 'rantai',
+                    'image' => null,
+                    'price' => 100000,
+                    'quantity' => 50,
+                    'created_at' => now('Asia/Jakarta')->subDays(2),
+                    'updated_at' => now('Asia/Jakarta')->subDays(2)
+                ],
+                [
+                    'name' => 'Velg',
+                    'slug' => 'velg',
+                    'image' => null,
+                    'price' => 125000,
+                    'quantity' => 75,
+                    'created_at' => now('Asia/Jakarta')->subDays(3),
+                    'updated_at' => now('Asia/Jakarta')->subDays(3)
+                ]
+            ];
+
             Accountancy::insert($accountancies);
+            Stock::insert($stocks);
         }
     }
 }
