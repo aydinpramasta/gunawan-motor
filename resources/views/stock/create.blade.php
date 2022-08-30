@@ -16,15 +16,22 @@
 
         <div class="form-group col-12 col-md-6">
           <label>Nama Produk</label>
-          <input type="text" name="name" class="form-control">
+          <input type="text" name="name" class="form-control @error('name') {{ 'is-invalid' }} @enderror">
+          @error('name')
+            <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group col-12 col-md-6">
           <label for="image">Gambar <small>(maks. 2 MB)</small></label>
           <div class="custom-file">
-            <input type="file" name="image" class="custom-file-input" id="image">
+            <input type="file" name="image" class="custom-file-input @error('image') {{ 'is-invalid' }} @enderror"
+              id="image">
             <label class="custom-file-label" for="image"></label>
           </div>
+          @error('image')
+            <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group col-12 col-md-6">
@@ -33,16 +40,23 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Rp</span>
             </div>
-            <input id="price" type="text" class="form-control" name="price">
+            <input id="price" type="text" class="form-control @error('price') {{ 'is-invalid' }} @enderror"
+              name="price">
             <div class="input-group-append">
               <span class="input-group-text">,-</span>
             </div>
           </div>
+          @error('price')
+            <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group col-12 col-md-6">
           <label>Jumlah</label>
-          <input type="number" name="quantity" class="form-control">
+          <input type="number" name="quantity" class="form-control @error('quantity') {{ 'is-invalid' }} @enderror">
+          @error('quantity')
+            <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group col-12 col-md-6 mt-3">

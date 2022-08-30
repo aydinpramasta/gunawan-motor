@@ -48,7 +48,7 @@ class AccountancyController extends Controller
         $request->validate([
             'type' => ['required', 'numeric'],
             'value' => ['required', 'string'],
-            'description' => ['string']
+            'description' => ['required', 'string']
         ]);
 
         Accountancy::create([

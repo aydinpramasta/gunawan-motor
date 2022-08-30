@@ -16,10 +16,13 @@
 
         <div class="form-group col-12 col-md-6">
           <label>Tipe</label>
-          <select class="form-control" name="type">
-            <option value="1">Pemasukan</option>
-            <option value="2">Pengeluaran</option>
+          <select class="form-control @error('type') {{ 'is-invalid' }} @enderror" name="type">
+            <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>Pemasukan</option>
+            <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>Pengeluaran</option>
           </select>
+          @error('type')
+            <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group col-12 col-md-6">
@@ -28,16 +31,23 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Rp</span>
             </div>
-            <input id="value" type="text" class="form-control" name="value">
+            <input id="value" type="text" class="form-control @error('value') {{ 'is-invalid' }} @enderror"
+              name="value" value="{{ old('value') }}">
             <div class="input-group-append">
               <span class="input-group-text">,-</span>
             </div>
           </div>
+          @error('value')
+            <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group col-12 col-md-6">
           <label>Deskripsi</label>
-          <textarea class="form-control" rows="3" name="description"></textarea>
+          <textarea class="form-control @error('description') {{ 'is-invalid' }} @enderror" rows="3" name="description">{{ old('description') }}</textarea>
+          @error('description')
+            <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group col-12 col-md-6 mt-3">
