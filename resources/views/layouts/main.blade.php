@@ -99,6 +99,16 @@
                 </p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="{{ route('recaps.index') }}"
+                class="nav-link {{ str_contains(request()->path(), 'recaps') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-folder"></i>
+                <p>
+                  Rekap
+                </p>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountancyController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecapController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/accountancies', AccountancyController::class)->except(['show']);
 
     Route::resource('/stocks', StockController::class)->except(['show']);
+
+    Route::view('/recaps', 'recap.index')->name('recaps.index');
+
+    Route::get('/recaps/accountancy', [RecapController::class, 'accountancy'])
+        ->name('recaps.accountancy');
 });
