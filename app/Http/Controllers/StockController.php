@@ -85,7 +85,9 @@ class StockController extends Controller
 
     public function destroy(Stock $stock)
     {
-        Storage::delete($stock->image);
+        if ($stock->image !== null) {
+            Storage::delete($stock->image);
+        }
 
         $stock->delete();
 
