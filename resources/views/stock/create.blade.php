@@ -16,7 +16,8 @@
 
         <div class="form-group col-12 col-md-6">
           <label>Nama Produk</label>
-          <input type="text" name="name" class="form-control @error('name') {{ 'is-invalid' }} @enderror">
+          <input type="text" name="name" class="form-control @error('name') {{ 'is-invalid' }} @enderror"
+            value="{{ old('name') }}">
           @error('name')
             <span class="text-danger">{{ $message }}</span>
           @enderror
@@ -41,7 +42,7 @@
               <span class="input-group-text">Rp</span>
             </div>
             <input id="price" type="text" class="form-control @error('price') {{ 'is-invalid' }} @enderror"
-              name="price">
+              name="price" value="{{ old('price') }}">
             <div class="input-group-append">
               <span class="input-group-text">,-</span>
             </div>
@@ -53,7 +54,8 @@
 
         <div class="form-group col-12 col-md-6">
           <label>Jumlah</label>
-          <input type="number" name="quantity" class="form-control @error('quantity') {{ 'is-invalid' }} @enderror">
+          <input type="number" name="quantity" class="form-control @error('quantity') {{ 'is-invalid' }} @enderror"
+            value="{{ old('quantity') }}">
           @error('quantity')
             <span class="text-danger">{{ $message }}</span>
           @enderror
