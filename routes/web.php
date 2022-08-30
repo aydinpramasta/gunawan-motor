@@ -39,4 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/recaps/accountancy', [RecapController::class, 'accountancy'])
         ->name('recaps.accountancy');
+
+    Route::get('/recaps/stock', [RecapController::class, 'stock'])
+        ->name('recaps.stock');
 });
