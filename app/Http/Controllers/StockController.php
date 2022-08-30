@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StockController extends Controller
 {
@@ -29,7 +30,7 @@ class StockController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
-            'image' => ['mimes:png,jpg,svg,webp', 'max:2048'],
+            'image' => ['nullable', 'mimes:png,jpg,svg,webp', 'max:2048'],
             'price' => ['required', 'string'],
             'quantity' => ['required', 'numeric']
         ]);
@@ -49,13 +50,37 @@ class StockController extends Controller
         return redirect()->route('stocks.index')->with('success', 'Berhasil menambah stok.');
     }
 
-    public function edit()
+    public function edit(Stock $stock)
     {
-        return view('stock.edit');
+        return view('stock.edit', compact('stock'));
     }
 
-    public function update()
+    public function update(Request $request, Stock $stock)
     {
+        $request->validate([
+            'name' => ['required', 'string'],
+            'image' => ['nullable', 'mimes:png,jpg,svg,webp', 'max:2048'],
+            'price' => ['required', 'string'],
+            'quantity' => ['required', 'numeric']
+        ]);
+
+        $stockData = [
+            'name' => $request->name,
+            'price' => (int) str_replace('.', '', $request->price),
+            'quantity' => $request->quantity
+        ];
+
+        if ($request->hasFile('image')) {
+            if ($stock->image !== null) {
+                Storage::delete($stock->image);
+            }
+
+            $stockData['image'] = $request->file('image')->store('stocks');
+        }
+
+        $stock->update($stockData);
+
+        return redirect()->route('stocks.index')->with('success', 'Berhasil mengedit stok.');
     }
 
     public function destroy()
