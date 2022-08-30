@@ -53,7 +53,8 @@
                   @csrf
                   @method('delete')
 
-                  <button type="submit" class="btn btn-sm btn-danger">
+                  <button onclick="return window.confirm('Yakin ingin menghapus data ini?')" type="submit"
+                    class="btn btn-sm btn-danger">
                     <i class="fas fa-trash"></i>
                   </button>
                 </form>

@@ -83,7 +83,10 @@ class StockController extends Controller
         return redirect()->route('stocks.index')->with('success', 'Berhasil mengedit stok.');
     }
 
-    public function destroy()
+    public function destroy(Stock $stock)
     {
+        $stock->delete();
+
+        return redirect()->route('stocks.index')->with('success', 'Berhasil menghapus stok.');
     }
 }
