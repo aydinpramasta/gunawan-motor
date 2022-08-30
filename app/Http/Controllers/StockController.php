@@ -85,6 +85,8 @@ class StockController extends Controller
 
     public function destroy(Stock $stock)
     {
+        Storage::delete($stock->image);
+
         $stock->delete();
 
         return redirect()->route('stocks.index')->with('success', 'Berhasil menghapus stok.');
